@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int damage;
     [SerializeField] private Transform playerTransform;
     private Rigidbody2D rb;
+    private bool IsJumping;
 
 
     void Start()
@@ -19,10 +20,16 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        
+        if (Input.GetKeyDown(KeyCode.W) && !IsJumping)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            
         }
+        
+       
+        
+
         if (Input.GetKey(KeyCode.A))
         {
             playerTransform.Translate(Vector3.left * speed * Time.deltaTime);
