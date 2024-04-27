@@ -43,8 +43,7 @@ public class PlayerController : MonoBehaviour
 
         groundFrames++;
         jumpkeyFrames++;
-
-
+        
         if (rb.velocity.y <= 0f)
         {
             Collider2D ground = Physics2D.OverlapBox(feet.position, new Vector2(0.99f, 0.05f), 0f, groundLayer);
@@ -74,14 +73,14 @@ public class PlayerController : MonoBehaviour
             {
                 Jump();
             }
-            else
+           /* else
             {
                 if (jumpCount > 0) 
                 {
                     Jump();
                     jumpCount--;
                 }
-            }         
+            } */        
         }
 
         if (Input.GetKeyUp(KeyCode.W))
