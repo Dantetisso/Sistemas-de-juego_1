@@ -4,41 +4,58 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private int speed;
+    private float xInput;
+    private float YInput;
+    [SerializeField] private float maxSpeed;
+    [SerializeField] private float maxAcceleration;
     [SerializeField] private int jumpForce;
     [SerializeField] private int damage;
-    [SerializeField] private Transform playerTransform;
-    private Rigidbody2D rb;
+    [SerializeField] private Transform feet;
+    [SerializeField] private LayerMask layer;
     private bool IsJumping;
+    private Rigidbody2D rb;
+   
 
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
 
     void Update()
     {
+        xInput = Input.GetAxisRaw("Horizontal");
+        YInput = Input.GetAxisRaw("Vertical");
+
         
-        if (Input.GetKeyDown(KeyCode.W) && !IsJumping)
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            Collider2D ground = Physics2D.OverlapBox(feet.position, Vector2.one, 0f, layer);
+            print(ground.gameObject.name);
+
+            if (ground != null)
+            {
+                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            }
             
         }
-        
-       
-        
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            playerTransform.Translate(Vector3.left * speed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            playerTransform.Translate(Vector3.right * speed * Time.deltaTime);
-        }
-        
-
     }
+
+    void FixedUpdate()
+    {
+       float desiredSpeed = xInput * maxSpeed;
+
+       float diffSpeed = desiredSpeed - rb.velocity.x;
+
+        diffSpeed = Mathf.Clamp(diffSpeed, -maxAcceleration, maxAcceleration);
+
+        float Xforce = rb.mass * diffSpeed;
+
+        if (xInput > 0.1f|| xInput < -0.1f)
+        {
+            rb.AddForce(new Vector2(Xforce, 0f), ForceMode2D.Impulse);
+        }       
+    }
+
 }
