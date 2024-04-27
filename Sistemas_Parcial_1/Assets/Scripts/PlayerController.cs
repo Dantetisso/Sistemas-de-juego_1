@@ -15,8 +15,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int extraJumps;
     [SerializeField] private Transform feet;
     [SerializeField] private LayerMask groundLayer;
+    private int groundFrames;
+    private int jumpkeyFrames;
 
     private bool IsJumping;
+    private bool Jumped;
     private Rigidbody2D rb;
     private int jumpCount;
 
@@ -36,12 +39,38 @@ public class PlayerController : MonoBehaviour
         xInput = Input.GetAxisRaw("Horizontal");
         YInput = Input.GetAxisRaw("Vertical");
 
-        Collider2D ground = Physics2D.OverlapBox(feet.position, new Vector2(0.99f, 0.05f), 0f, groundLayer);
-        bool IsGrounded = (ground != null);
+        bool IsGrounded = false;
+
+        groundFrames++;
+        jumpkeyFrames++;
+
+
+        if (rb.velocity.y <= 0f)
+        {
+            Collider2D ground = Physics2D.OverlapBox(feet.position, new Vector2(0.99f, 0.05f), 0f, groundLayer);
+            IsGrounded = (ground != null);
+        }
         
+
+
+        if (IsGrounded)
+        {
+            jumpCount = extraJumps;
+            groundFrames = 0;
+            Jumped = false;
+
+            if (jumpkeyFrames < 3)
+            {
+                Jump();
+            }
+        }
+
+
         if (Input.GetKeyDown(KeyCode.W))
         {
-            if (IsGrounded)
+            jumpkeyFrames = 0;
+
+            if (IsGrounded || (groundFrames < 3 && !Jumped))
             {
                 Jump();
             }
@@ -59,15 +88,11 @@ public class PlayerController : MonoBehaviour
         {
             if (rb.velocity.y > 0f)
             {
-                rb.velocity = new Vector2(rb.velocity.x, 0);
+                rb.velocity = new Vector2(rb.velocity.x, 0f);
             }
             
         }
-
-        if (IsGrounded)
-        {
-            jumpCount = extraJumps;
-        }
+               
     }
 
     void FixedUpdate()
@@ -88,7 +113,9 @@ public class PlayerController : MonoBehaviour
 
 
     private void Jump()
-    {        
+    {
+        Jumped = true;
+        rb.velocity = new Vector2(rb.velocity.x, 0f);
         rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
     }
 
