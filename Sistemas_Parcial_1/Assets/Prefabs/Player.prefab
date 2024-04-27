@@ -138,13 +138,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 4
-  maxAcceleration: 0.25
-  jumpForce: 8
-  damage: 10
+  maxAcceleration: 0.3
+  jumpSpeed: 8
+  extraJumps: 1
   feet: {fileID: 6022474141834038056}
-  layer:
+  groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  damage: 10
 --- !u!1 &4762966878490994372
 GameObject:
   m_ObjectHideFlags: 0
