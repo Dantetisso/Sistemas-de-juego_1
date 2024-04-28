@@ -60,11 +60,17 @@ public class PlayerController : MonoBehaviour
             jumpCount = extraJumps;
             groundFrames = 0;
             Jumped = false;
+            animator.SetBool("Grounded", true);
 
             if (jumpkeyFrames < 3)
             {
                 Jump();
             }
+        }
+
+        if (!IsGrounded)
+        {
+            animator.SetBool("Grounded", false);
         }
 
 
@@ -125,6 +131,7 @@ public class PlayerController : MonoBehaviour
         Jumped = true;
         rb.velocity = new Vector2(rb.velocity.x, 0f);
         rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
+        
     }
 
 
