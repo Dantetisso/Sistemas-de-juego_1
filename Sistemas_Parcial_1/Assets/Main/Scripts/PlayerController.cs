@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerController : MonoBehaviour, IDamageable
+public class PlayerController : MonoBehaviour
 {
     #region Variables
     private float inputX;
     private float inputY;
 
     private Animator animator;
+
     [Header("Health")]
     [SerializeField] private int maxHealth;
     public int currentHealth;

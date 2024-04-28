@@ -2,30 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour, IDamageable
+public class EnemyController : MonoBehaviour
 {
-    [SerializeField] private int maxHealth;
+    [SerializeField] private EnemyData data;
+    private int maxHealth;
     public int currentHealth;
     [SerializeField] private int maxDamage;
     public bool IsDead;
- 
-    
-    void Start()
+
+
+    private void Awake()
     {
-        
+        maxHealth = data.maxHealth;
     }
 
-   
+    private void Start()
+    {
+        currentHealth = maxHealth;
+    }
+
     void Update()
     {
         
     }
 
-
-    public void UpdateHealth()
-    {
-        maxHealth = currentHealth;
-    }
+   
 
     public void GetDamage(int damage)
     {
@@ -33,37 +34,14 @@ public class EnemyController : MonoBehaviour, IDamageable
     }
 
 
-    public void Heal(int heal)
-    {
-        currentHealth += heal;
-
-        if (currentHealth >= maxHealth)
-        {
-            currentHealth = maxHealth;
-        }
-    }
-
-    public int GetCurrentHealth()
-    {
-        return currentHealth;
-    }
-
     public bool IsAlive()
     {
         return currentHealth > 0;
-    }
-
-
-    private void ResetHealth()
-    {
-        currentHealth = maxHealth;
-
     }
 
     public void Death()
     {
         Debug.Log("died");
     }
-
 
 }
