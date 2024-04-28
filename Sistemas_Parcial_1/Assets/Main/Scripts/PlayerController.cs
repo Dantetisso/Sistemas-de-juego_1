@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerController : MonoBehaviour, IHealth
+public class PlayerController : MonoBehaviour, IDamageable
 {
     #region Variables
     private float inputX;
@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour, IHealth
 
     [Header("Combat")]
     [SerializeField] private int damage;
+    
 
     #endregion
 
