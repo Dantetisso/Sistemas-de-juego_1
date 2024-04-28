@@ -5,8 +5,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    private float xInput;
-    private float YInput;
+    private float inputX;
+    private float inputY;
+
+    private Animator animator;
 
     [Header("Movement")]
     [SerializeField] private float maxSpeed;
@@ -27,17 +29,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int damage;
 
 
-    void Start()
+    private void Awake()
     {
+        animator = GetComponent<Animator>();
         rb = gameObject.GetComponent<Rigidbody2D>();
-       
     }
 
 
     void Update()
     {
-        xInput = Input.GetAxisRaw("Horizontal");
-        YInput = Input.GetAxisRaw("Vertical");
+        inputX = Input.GetAxisRaw("Horizontal");
+        inputY = Input.GetAxisRaw("Vertical");
+
+        animator.SetFloat("Speed", Mathf.Abs(inputX));
 
         bool IsGrounded = false;
 
@@ -50,7 +54,6 @@ public class PlayerController : MonoBehaviour
             IsGrounded = (ground != null);
         }
         
-
 
         if (IsGrounded)
         {
@@ -96,7 +99,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-       float desiredSpeed = xInput * maxSpeed;
+       float desiredSpeed = inputX * maxSpeed;
 
        float diffSpeed = desiredSpeed - rb.velocity.x;
 
@@ -104,10 +107,16 @@ public class PlayerController : MonoBehaviour
 
        float Xforce = rb.mass * diffSpeed;
 
-        if (xInput > 0.1f|| xInput < -0.1f)
+        if (inputX > 0.1f)
         {
             rb.AddForce(new Vector2(Xforce, 0f), ForceMode2D.Impulse);
-        }       
+            transform.rotation = (Quaternion.Euler(0, 0, 0));
+        }     
+        else if (inputX < -0.1f) 
+        {
+            rb.AddForce(new Vector2(Xforce, 0f), ForceMode2D.Impulse);
+            transform.rotation = (Quaternion.Euler(0, 180, 0));
+        }
     }
 
 
