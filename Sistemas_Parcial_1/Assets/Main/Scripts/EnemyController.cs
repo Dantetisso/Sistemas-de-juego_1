@@ -43,7 +43,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         }
     }
 
-    private int GetCurrentHealth()
+    public int GetCurrentHealth()
     {
         return currentHealth;
     }

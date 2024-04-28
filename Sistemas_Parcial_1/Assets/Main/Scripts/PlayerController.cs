@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] private int jumpSpeed;
     [SerializeField] private int extraJumps;
     [SerializeField] private Transform feet;
+    [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask groundLayer;
     private int groundFrames;
     private int jumpkeyFrames;
@@ -34,7 +35,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     [Header("Combat")]
     [SerializeField] private int damage;
-    
+    [SerializeField] private LayerMask enemyLayer;
 
     #endregion
 
@@ -152,6 +153,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     private void Attack()
     {
         animator.SetTrigger("Attack");
+        Collider2D enemy = Physics2D.OverlapBox(attackPoint.position, new Vector2(1f, 1f), 0f, enemyLayer);
+        Debug.Log(enemy);
     }
 
     public void UpdateHealth() 
