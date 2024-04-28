@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public interface IDamageable 
+public interface IHealth 
 {
     void UpdateHealth();
 
