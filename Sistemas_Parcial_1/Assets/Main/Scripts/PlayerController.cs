@@ -1,14 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable
 {
-
+    #region Variables
     private float inputX;
     private float inputY;
 
     private Animator animator;
+    [Header("Health")]
+    [SerializeField] private int maxHealth;
+    public int currentHealth;
+    private bool IsDead;
+
 
     [Header("Movement")]
     [SerializeField] private float maxSpeed;
@@ -28,6 +35,7 @@ public class PlayerController : MonoBehaviour
     [Header("Combat")]
     [SerializeField] private int damage;
 
+    #endregion
 
     private void Awake()
     {
@@ -131,6 +139,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    #region Metodos
     private void Jump()
     {
         Jumped = true;
@@ -144,5 +153,44 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("Attack");
     }
 
+    public void UpdateHealth() 
+    {
+        maxHealth = currentHealth;
+    }
 
+    public void GetDamage(int damage) 
+    {
+        currentHealth -= damage;
+    }
+              
+    public void Heal(int heal)
+    {
+        currentHealth += heal;
+
+        if (currentHealth >= maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+    }
+
+    private int GetCurrentHealth()
+    {
+        return currentHealth;
+    }
+
+    public bool IsAlive()
+    {
+        return currentHealth > 0;
+    }
+
+    private void ResetHealth()
+    {
+        currentHealth = maxHealth;
+    }
+
+    public void Death()
+    {
+        Debug.Log("died");
+    }
+    #endregion
 }
