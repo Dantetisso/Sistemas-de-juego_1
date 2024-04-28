@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             jumpkeyFrames = 0;
 
@@ -92,13 +92,18 @@ public class PlayerController : MonoBehaviour
             } */        
         }
 
-        if (Input.GetKeyUp(KeyCode.W))
+        if (Input.GetKeyUp(KeyCode.UpArrow))
         {
             if (rb.velocity.y > 0f)
             {
                 rb.velocity = new Vector2(rb.velocity.x, 0f);
             }
             
+        }
+
+        if (Input.GetKey(KeyCode.Z))
+        {
+            Attack();
         }
                
     }
@@ -132,6 +137,11 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 0f);
         rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
         
+    }
+
+    private void Attack()
+    {
+        animator.SetTrigger("Attack");
     }
 
 
