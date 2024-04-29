@@ -163,28 +163,28 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("Attack");
         Collider2D[] hit = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(1f, 1f), 0f, damageableLayer);
         
-        foreach (Collider2D objects in hit)
+        foreach (Collider2D objects in hit) // recorre array de collideres dentro de la mascara damageable y busca si tienen la interfaz damageable para hacerles daño
         {
             if (objects.TryGetComponent(out IDamagable damageable))
             {
                 damageable.GetDamage(attackDamage);
+                Debug.Log(damageable);
             }
         }  
               
-        Debug.Log(hit);
+        
     }
 
     private void ONInteract()
     {
-        Debug.Log("E");
-
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(attackPoint.position,new Vector2(1f, 1f), 0f, interactableLayer);
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(attackPoint.position,new Vector2(1f, 1f), 0f, interactableLayer); // lo mismo que con el metodo attack pero esta vez para interactuar
 
         foreach (Collider2D items in colliders)
         {
             if (items.TryGetComponent(out IInteractable interactable))
             {
                 interactable.Interact();
+                Debug.Log(interactable);
             }
         }      
 
