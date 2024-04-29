@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private float inputX;
     private float inputY;
 
+    private Rigidbody2D rb;
     private Animator animator;
 
     [Header("Health")]
@@ -27,16 +28,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     private int groundFrames;
     private int jumpkeyFrames;
-
     private bool IsJumping;
     private bool Jumped;
-    private Rigidbody2D rb;
     private int jumpCount;
 
     [Header("Interaction")]
     [SerializeField] private LayerMask interactableLayer;
-    
-    
+        
     [Header("Combat")]
     [SerializeField] private int attackDamage;
     [SerializeField] private Transform attackPoint;
@@ -150,7 +148,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    #region Metodos
+    #region Metodos del jugador
     private void Jump()
     {
         Jumped = true;
@@ -177,7 +175,7 @@ public class PlayerController : MonoBehaviour
     private void ONInteract()
     {
         Debug.Log("jiji");
-        
+
         Collider2D[] colliders = Physics2D.OverlapBoxAll(attackPoint.position,new Vector2(1f, 1f), 0f, interactableLayer);
 
         foreach (Collider2D items in colliders)
@@ -191,6 +189,9 @@ public class PlayerController : MonoBehaviour
 
     }
 
+#endregion
+
+#region metodos de vida
     public void UpdateHealth() 
     {
         maxHealth = currentHealth;
