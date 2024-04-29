@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
             Attack();
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.X))
         {
             ONInteract();
         }
