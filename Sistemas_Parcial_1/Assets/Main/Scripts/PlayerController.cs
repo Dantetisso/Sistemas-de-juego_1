@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int jumpSpeed;
     [SerializeField] private int extraJumps;
     [SerializeField] private Transform feet;
-    [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask groundLayer;
     private int groundFrames;
     private int jumpkeyFrames;
@@ -36,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Combat")]
     [SerializeField] private int attackDamage;
+    [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask enemyLayer;
 
     #endregion
@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
         if (enemy != null)
         {
             enemy.GetDamage(attackDamage);
-            Debug.Log(enemy);
+            Debug.Log(hit);
         }
         
         Debug.Log(hit);

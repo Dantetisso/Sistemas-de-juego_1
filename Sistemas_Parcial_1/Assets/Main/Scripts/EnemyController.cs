@@ -26,8 +26,6 @@ public class EnemyController : MonoBehaviour
         
     }
 
-   
-
     public void GetDamage(int damage)
     {
         currentHealth -= damage;
