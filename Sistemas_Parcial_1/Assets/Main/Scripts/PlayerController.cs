@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int attackDamage;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private LayerMask damageableLayer;
     #endregion
 
     private void Awake()
@@ -160,15 +161,16 @@ public class PlayerController : MonoBehaviour
     private void Attack()
     {
         animator.SetTrigger("Attack");
-        Collider2D hit = Physics2D.OverlapBox(attackPoint.position, new Vector2(1f, 1f), 0f, enemyLayer);
-        EnemyController enemy = hit.GetComponent<EnemyController>();
-
-        if (enemy != null)
-        {
-            enemy.GetDamage(attackDamage);
-            Debug.Log(hit);
-        }
+        Collider2D[] hit = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(1f, 1f), 0f, damageableLayer);
         
+        foreach (Collider2D objects in hit)
+        {
+            if (objects.TryGetComponent(out IDamagable damageable))
+            {
+                damageable.GetDamage(attackDamage);
+            }
+        }  
+              
         Debug.Log(hit);
     }
 

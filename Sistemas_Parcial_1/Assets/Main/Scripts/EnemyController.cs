@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IDamagable
 {
     [SerializeField] private EnemyData data;
     private int maxHealth;
@@ -26,9 +26,13 @@ public class EnemyController : MonoBehaviour
         
     }
 
+private void getdamage(int damage)
+{
+    currentHealth -= damage;
+}
     public void GetDamage(int damage)
     {
-        currentHealth -= damage;
+        getdamage(damage);
     }
 
 
