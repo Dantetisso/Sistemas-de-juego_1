@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc35647f46c8f6b47ad9db1551d280d8, type: 3}
   m_Name: Enemy_1
   m_EditorClassIdentifier: 
-  _maxHealth: 20
-  _speed: 5
-  _damage: 5
-  _playerMask:
+  <maxHealth>k__BackingField: 10
+  <speed>k__BackingField: 5
+  <damage>k__BackingField: 10
+  <playerMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 256

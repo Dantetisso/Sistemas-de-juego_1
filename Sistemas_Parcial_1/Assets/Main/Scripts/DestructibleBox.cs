@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestructibleBox : MonoBehaviour, IDamagable
+public class DestructibleBox : MonoBehaviour//, IDamagable
 {  
     private HealthController healthcontroller;
 
@@ -11,7 +11,7 @@ public class DestructibleBox : MonoBehaviour, IDamagable
         healthcontroller = GetComponent<HealthController>();
         healthcontroller.currentHealth = healthcontroller.maxHealth;
     }
-     private void getdamage(int damage)
+/*     private void getdamage(int damage)
     {
         healthcontroller.currentHealth -= damage;
     }
@@ -20,7 +20,7 @@ public class DestructibleBox : MonoBehaviour, IDamagable
     {
         getdamage(damage);
     }
-
+*/
    private void Update()
     {
         if (healthcontroller.currentHealth < 0)
