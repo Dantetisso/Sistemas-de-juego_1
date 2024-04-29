@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthController : MonoBehaviour, IDamagable
+public class HealthController : MonoBehaviour
 {
     public int maxHealth;
     public int currentHealth;
