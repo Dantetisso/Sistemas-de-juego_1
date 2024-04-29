@@ -160,18 +160,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb05b8c7712bb7145ac1848d83701d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
+  maxHealth: 100
   currentHealth: 0
   maxSpeed: 4
   maxAcceleration: 0.3
   jumpSpeed: 8
   extraJumps: 1
   feet: {fileID: 6022474141834038056}
-  attackPoint: {fileID: 1171299843939877841}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 128
   attackDamage: 10
+  attackPoint: {fileID: 1171299843939877841}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64

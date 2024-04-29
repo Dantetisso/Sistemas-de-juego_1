@@ -33,11 +33,14 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private int jumpCount;
 
+    [Header("Interaction")]
+    [SerializeField] private LayerMask interactableLayer;
+    
+    
     [Header("Combat")]
     [SerializeField] private int attackDamage;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask enemyLayer;
-
     #endregion
 
     private void Awake()
@@ -116,6 +119,11 @@ public class PlayerController : MonoBehaviour
         {
             Attack();
         }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            ONInteract();
+        }
                
     }
 
@@ -164,6 +172,23 @@ public class PlayerController : MonoBehaviour
         }
         
         Debug.Log(hit);
+    }
+
+    private void ONInteract()
+    {
+        Debug.Log("jiji");
+        
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(attackPoint.position,new Vector2(1f, 1f), 0f, interactableLayer);
+
+        foreach (Collider2D items in colliders)
+        {
+            if (items.TryGetComponent(out IInteractable interactable))
+            {
+                interactable.Interact();
+                Debug.Log(colliders);
+            }
+        }      
+
     }
 
     public void UpdateHealth() 
