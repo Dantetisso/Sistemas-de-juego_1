@@ -171,7 +171,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  damage: 10
+  attackDamage: 10
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64

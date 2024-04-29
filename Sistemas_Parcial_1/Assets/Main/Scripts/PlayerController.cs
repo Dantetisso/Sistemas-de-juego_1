@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     private int jumpCount;
 
     [Header("Combat")]
-    [SerializeField] private int damage;
+    [SerializeField] private int attackDamage;
     [SerializeField] private LayerMask enemyLayer;
 
     #endregion
@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
             
         }
 
-        if (Input.GetKey(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             Attack();
         }
@@ -154,8 +154,16 @@ public class PlayerController : MonoBehaviour
     private void Attack()
     {
         animator.SetTrigger("Attack");
-        Collider2D enemy = Physics2D.OverlapBox(attackPoint.position, new Vector2(1f, 1f), 0f, enemyLayer);
-        Debug.Log(enemy);
+        Collider2D hit = Physics2D.OverlapBox(attackPoint.position, new Vector2(1f, 1f), 0f, enemyLayer);
+        EnemyController enemy = hit.GetComponent<EnemyController>();
+
+        if (enemy != null)
+        {
+            enemy.GetDamage(attackDamage);
+            Debug.Log(enemy);
+        }
+        
+        Debug.Log(hit);
     }
 
     public void UpdateHealth() 
