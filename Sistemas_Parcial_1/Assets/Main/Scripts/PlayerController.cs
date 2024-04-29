@@ -23,14 +23,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxSpeed;
     [SerializeField] private float maxAcceleration;
     [SerializeField] private int jumpSpeed;
-    [SerializeField] private int extraJumps;
     [SerializeField] private Transform feet;
     [SerializeField] private LayerMask groundLayer;
     private int groundFrames;
     private int jumpkeyFrames;
     private bool IsJumping;
     private bool Jumped;
-    private int jumpCount;
 
     [Header("Interaction")]
     [SerializeField] private LayerMask interactableLayer;
@@ -70,7 +68,6 @@ public class PlayerController : MonoBehaviour
 
         if (IsGrounded)
         {
-            jumpCount = extraJumps;
             groundFrames = 0;
             Jumped = false;
             animator.SetBool("Grounded", true);
@@ -94,15 +91,7 @@ public class PlayerController : MonoBehaviour
             if (IsGrounded || (groundFrames < 3 && !Jumped))
             {
                 Jump();
-            }
-           /* else
-            {
-                if (jumpCount > 0) 
-                {
-                    Jump();
-                    jumpCount--;
-                }
-            } */        
+            }        
         }
 
         if (Input.GetKeyUp(KeyCode.UpArrow))
@@ -111,7 +100,6 @@ public class PlayerController : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, 0f);
             }
-            
         }
 
         if (Input.GetKeyDown(KeyCode.Z))
@@ -122,9 +110,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             ONInteract();
-        }
-               
+        }  
     }
+
 
     void FixedUpdate()
     {

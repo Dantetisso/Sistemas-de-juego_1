@@ -160,7 +160,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 777cce4d0338aa24fbcfd0873c3a3314, type: 2}
-  maxDamage: 10
   IsDead: 0
 --- !u!114 &5340028594243494999
 MonoBehaviour:

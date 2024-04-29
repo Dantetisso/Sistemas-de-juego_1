@@ -10,5 +10,6 @@ public class EnemyData : ScriptableObject
     [field: SerializeField] public int speed {get; private set;}
     [field: SerializeField] public int damage {get; private set;}
     [field: SerializeField] public LayerMask playerMask {get; private set;}
+    [field: SerializeField] public LayerMask groundMask {get; private set;}
 
 }
