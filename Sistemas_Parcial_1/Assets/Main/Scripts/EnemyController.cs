@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour//, IDamagable
+public class EnemyController : MonoBehaviour, IDamagable
 {
     [SerializeField] private EnemyData data;
     private HealthController health;
@@ -16,7 +16,7 @@ public class EnemyController : MonoBehaviour//, IDamagable
         health.currentHealth = health.maxHealth;
         damage = data.damage;
     }
-/*
+
     private void getdamage(int damage)
     {
         health.currentHealth -= damage;
@@ -26,7 +26,12 @@ public class EnemyController : MonoBehaviour//, IDamagable
     {
         getdamage(damage);
     }
-*/
+
+    public bool IsAlive()
+    {
+        return health.currentHealth > 0;
+    }
+
     public void Death()
     {        
         Debug.Log("died");

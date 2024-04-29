@@ -6,9 +6,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "new Enemy", menuName = ("Scriptable Objects/Enemy"))]
 public class EnemyData : ScriptableObject
 {
-    [field: SerializeField] public int maxHealth {get; private set;}
-    [field: SerializeField] public int speed {get; private set;}
-    [field: SerializeField] public int damage {get; private set;}
-    [field: SerializeField] public LayerMask playerMask {get; private set;}
+    [SerializeField] private int _maxHealth;
+    [SerializeField] private int _speed;
+    [SerializeField] private int _damage;
+    [SerializeField] private LayerMask _playerMask;
 
+    public int maxHealth => _maxHealth;
+    public int speed => _speed;
+    public int damage => _damage;
+    public LayerMask playerMask => _playerMask;
+    
 }

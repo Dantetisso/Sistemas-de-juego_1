@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthController : MonoBehaviour, IDamagable
+public class HealthController : MonoBehaviour
 {
     public int maxHealth;
     public int currentHealth;
@@ -11,13 +11,10 @@ public class HealthController : MonoBehaviour, IDamagable
     {
         maxHealth = currentHealth;
     }
-    private void getdamage(int damage)
-    {
-        currentHealth -= damage;
-    }
+
     public void GetDamage(int damage) 
     {
-        getdamage(damage);
+        currentHealth -= damage;
     }
               
     public void Heal(int heal)
