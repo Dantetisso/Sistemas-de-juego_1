@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class DestructibleBox : MonoBehaviour, IDamagable
 {  
-    [SerializeField] private int maxHealth;
-    private int health;
+    private HealthController healthcontroller;
 
     void Start()
     {
-        health = maxHealth;
+        healthcontroller = GetComponent<HealthController>();
+        healthcontroller.currentHealth = healthcontroller.maxHealth;
     }
      private void getdamage(int damage)
     {
-        health -= damage;
+        healthcontroller.currentHealth -= damage;
     }
 
      public void GetDamage(int damage)
@@ -23,7 +23,7 @@ public class DestructibleBox : MonoBehaviour, IDamagable
 
    private void Update()
     {
-        if (health < 0)
+        if (healthcontroller.currentHealth < 0)
         {
             OnDestroy();
             Debug.Log("chau cajitaaa");

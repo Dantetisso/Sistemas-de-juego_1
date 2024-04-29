@@ -5,44 +5,35 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour, IDamagable
 {
     [SerializeField] private EnemyData data;
-    private int maxHealth;
-    public int currentHealth;
-    [SerializeField] private int maxDamage;
+    private HealthController health;
+    private int damage;
     public bool IsDead;
-
-
-    private void Awake()
-    {
-        maxHealth = data.maxHealth;
-    }
 
     private void Start()
     {
-        currentHealth = maxHealth;
+        health = GetComponent<HealthController>();
+        health.maxHealth = data.maxHealth;
+        health.currentHealth = health.maxHealth;
+        damage = data.damage;
     }
 
-    void Update()
+    private void getdamage(int damage)
     {
-        
+        health.currentHealth -= damage;
     }
-
-private void getdamage(int damage)
-{
-    currentHealth -= damage;
-}
+    
     public void GetDamage(int damage)
     {
         getdamage(damage);
     }
 
-
     public bool IsAlive()
     {
-        return currentHealth > 0;
+        return health.currentHealth > 0;
     }
 
     public void Death()
-    {
+    {        
         Debug.Log("died");
     }
 

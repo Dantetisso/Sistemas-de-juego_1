@@ -171,8 +171,6 @@ public class PlayerController : MonoBehaviour
                 Debug.Log(damageable);
             }
         }  
-              
-        
     }
 
     private void ONInteract()
@@ -187,50 +185,13 @@ public class PlayerController : MonoBehaviour
                 Debug.Log(interactable);
             }
         }      
-
     }
 
-#endregion
-
-#region metodos de vida
-    public void UpdateHealth() 
-    {
-        maxHealth = currentHealth;
-    }
-
-    public void GetDamage(int damage) 
-    {
-        currentHealth -= damage;
-    }
-              
-    public void Heal(int heal)
-    {
-        currentHealth += heal;
-
-        if (currentHealth >= maxHealth)
-        {
-            currentHealth = maxHealth;
-        }
-    }
-
-    private int GetCurrentHealth()
-    {
-        return currentHealth;
-    }
-
-    public bool IsAlive()
-    {
-        return currentHealth > 0;
-    }
-
-    private void ResetHealth()
-    {
-        currentHealth = maxHealth;
-    }
+#endregion   
 
     public void Death()
     {
         Debug.Log("died");
     }
-    #endregion
+    
 }
