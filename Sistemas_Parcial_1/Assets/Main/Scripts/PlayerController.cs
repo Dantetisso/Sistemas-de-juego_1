@@ -174,7 +174,7 @@ public class PlayerController : MonoBehaviour
 
     private void ONInteract()
     {
-        Debug.Log("jiji");
+        Debug.Log("E");
 
         Collider2D[] colliders = Physics2D.OverlapBoxAll(attackPoint.position,new Vector2(1f, 1f), 0f, interactableLayer);
 
@@ -183,7 +183,6 @@ public class PlayerController : MonoBehaviour
             if (items.TryGetComponent(out IInteractable interactable))
             {
                 interactable.Interact();
-                Debug.Log(colliders);
             }
         }      
 
