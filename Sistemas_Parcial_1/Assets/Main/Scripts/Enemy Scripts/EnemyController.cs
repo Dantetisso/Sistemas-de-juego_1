@@ -6,10 +6,12 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour, IDamagable
 {
     [SerializeField] private EnemyData data;
+    [SerializeField]private Transform attackPoint;
     private HealthController health;
     private Animator animator;
     private int damage;
     public bool IsDead;
+
 
     private void Start()
     {
@@ -24,11 +26,12 @@ public class EnemyController : MonoBehaviour, IDamagable
 
     void Update()
     {
-        if (health.currentHealth < 0)
+        if (health.currentHealth <= 0)
         {
             Death();
         }
     }
+
     private void getdamage(int damage)
     {
         health.currentHealth -= damage;
@@ -41,7 +44,9 @@ public class EnemyController : MonoBehaviour, IDamagable
 
     private void Death()
     {    
+        IsDead = true;
         animator.SetTrigger("Death");
+       // transform.position = new Vector3(transform.position.x, -1, transform.position.z); // baja la posicion del enemy x culpa de la animacion de muerte
         Destroy(gameObject);
     }
 
