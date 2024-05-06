@@ -46,6 +46,11 @@ public class PlayerController : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
+    private void MovePlayer()
+    {
+        var MovementCommand = new MovementCommand(inputX,inputY, rb, maxSpeed, maxAcceleration, transform);
+        MovementCommand.Move();
+    }
 
     void Update()
     {
@@ -116,24 +121,25 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-       float desiredSpeed = inputX * maxSpeed;
+    //    float desiredSpeed = inputX * maxSpeed;
 
-       float diffSpeed = desiredSpeed - rb.velocity.x;
+    //    float diffSpeed = desiredSpeed - rb.velocity.x;
 
-       diffSpeed = Mathf.Clamp(diffSpeed, -maxAcceleration, maxAcceleration);
+    //    diffSpeed = Mathf.Clamp(diffSpeed, -maxAcceleration, maxAcceleration);
 
-       float Xforce = rb.mass * diffSpeed;
+    //    float Xforce = rb.mass * diffSpeed;
 
-        if (inputX > 0.1f)
-        {
-            rb.AddForce(new Vector2(Xforce, 0f), ForceMode2D.Impulse);
-            transform.rotation = (Quaternion.Euler(0, 0, 0));
-        }     
-        else if (inputX < -0.1f) 
-        {
-            rb.AddForce(new Vector2(Xforce, 0f), ForceMode2D.Impulse);
-            transform.rotation = (Quaternion.Euler(0, 180, 0));
-        }
+    //     if (inputX > 0.1f)
+    //     {
+    //         rb.AddForce(new Vector2(Xforce, 0f), ForceMode2D.Impulse);
+    //         transform.rotation = (Quaternion.Euler(0, 0, 0));
+    //     }     
+    //     else if (inputX < -0.1f) 
+    //     {
+    //         rb.AddForce(new Vector2(Xforce, 0f), ForceMode2D.Impulse);
+    //         transform.rotation = (Quaternion.Euler(0, 180, 0));
+    //     }
+        MovePlayer();
     }
 
 
