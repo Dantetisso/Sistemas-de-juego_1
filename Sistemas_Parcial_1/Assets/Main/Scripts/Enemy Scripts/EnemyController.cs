@@ -6,13 +6,15 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour, IDamagable
 {
     [SerializeField] private EnemyData data;
-    [SerializeField]private Transform attackPoint;
+    [SerializeField] private Transform attackPoint;
     private HealthController health;
     private Animator animator;
     private CapsuleCollider2D coll;
     private int damage;
     public bool IsDead;
     [SerializeField] private float maxTime;
+
+  
 
 
     private void Start()
@@ -29,7 +31,10 @@ public class EnemyController : MonoBehaviour, IDamagable
 
     void Update()
     {
-        if (IsDead){maxTime -= Time.deltaTime;}
+        if (IsDead)
+        {
+            maxTime -= Time.deltaTime;
+        }
         
         if (health.currentHealth <= 0)
         {
@@ -72,5 +77,4 @@ public class EnemyController : MonoBehaviour, IDamagable
             maxTime = 0;
         }
     }
-
 }
