@@ -12,18 +12,11 @@ public class EnemySpawnController : MonoBehaviour
     {
         
     }
-
-    [System.Obsolete]
+    
     void Update()
-    {//Random.RandomRange(0, spawnPoints.Length)
-       // Transform position = spawnPoints[index];
-       /* for (int i = 0; i < spawnPoints.Length; i++)
+    {      
+        for (int i = index; i < spawnPoints.Length; i++)
         {
-            
-        }*/
-
-        while (index < spawnPoints.Length)
-        {   
             index++;
             Instantiate(enemy, spawnPoints[index]);
         }

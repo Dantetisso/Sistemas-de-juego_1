@@ -7,7 +7,7 @@ public class ChestController : MonoBehaviour, IInteractable
     private void interact()
     {
         transform.position = new Vector3(transform.position.x,1,0);
-        Debug.Log("holaaa");
+        Debug.Log("cofre abierto");
     }
    
     public void Interact()
