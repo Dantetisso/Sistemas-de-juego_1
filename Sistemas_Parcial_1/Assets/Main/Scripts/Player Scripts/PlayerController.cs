@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
             if (items.TryGetComponent(out IInteractable interactable))
             {
                 interactable.Interact();
-                Debug.Log(interactable);
+                Debug.Log("<color=green>" + interactable + "</color>");
             }
         }      
     }
