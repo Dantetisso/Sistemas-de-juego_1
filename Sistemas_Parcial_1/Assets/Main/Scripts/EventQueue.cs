@@ -7,7 +7,7 @@ public class EventQueue : MonoBehaviour
     private List<ICommand> currentCommands = new();
     public static EventQueue Instance { get; private set; }
 
-   private void Awake()
+    private void Awake()
     {
         if (Instance != null)
         {

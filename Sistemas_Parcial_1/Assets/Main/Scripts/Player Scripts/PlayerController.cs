@@ -48,10 +48,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        
-
-        animator.SetFloat("Speed", Mathf.Abs(inputX));
-
         bool IsGrounded = false;
 
         groundFrames++;
@@ -62,7 +58,6 @@ public class PlayerController : MonoBehaviour
             Collider2D ground = Physics2D.OverlapBox(feet.position, new Vector2(0.99f, 0.05f), 0f, groundLayer);
             IsGrounded = (ground != null);
         }
-        
 
         if (IsGrounded)
         {
@@ -80,7 +75,6 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("Grounded", false);
         }
-
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -111,53 +105,37 @@ public class PlayerController : MonoBehaviour
         }  
     }
 
-
     void FixedUpdate()
     {
-    //    float desiredSpeed = inputX * maxSpeed;
-
-    //    float diffSpeed = desiredSpeed - rb.velocity.x;
-
-    //    diffSpeed = Mathf.Clamp(diffSpeed, -maxAcceleration, maxAcceleration);
-
-    //    float Xforce = rb.mass * diffSpeed;
-
-    //     if (inputX > 0.1f)
-    //     {
-    //         rb.AddForce(new Vector2(Xforce, 0f), ForceMode2D.Impulse);
-    //         transform.rotation = (Quaternion.Euler(0, 0, 0));
-    //     }     
-    //     else if (inputX < -0.1f) 
-    //     {
-    //         rb.AddForce(new Vector2(Xforce, 0f), ForceMode2D.Impulse);
-    //         transform.rotation = (Quaternion.Euler(0, 180, 0));
-    //     }
         Move();
     }
 
 
     #region Metodos del jugador
+
+     private void Move()
+    {
+        inputX = Input.GetAxisRaw("Horizontal");
+        inputY = Input.GetAxisRaw("Vertical");
+        animator.SetFloat("Speed", Mathf.Abs(inputX));
+        
+        var MovementCommand = new MovementCommand(inputX, inputY, rb, maxSpeed, maxAcceleration, transform);
+        EventQueue.Instance.QueueCommand(MovementCommand);
+    }
+
     private void Jump()
     {
         Jumped = true;
         rb.velocity = new Vector2(rb.velocity.x, 0f);
         rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
-        
     }
 
     private void Attack()
     {
         animator.SetTrigger("Attack");
-        Collider2D[] hit = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(1f, 1f), 0f, damageableLayer);
-        
-        foreach (Collider2D objects in hit) // recorre array de collideres dentro de la mascara damageable y busca si tienen la interfaz damageable para hacerles daño
-        {
-            if (objects.TryGetComponent(out IDamagable damageable))
-            {
-                damageable.GetDamage(attackDamage);
-                Debug.Log(damageable);
-            }
-        }  
+
+        var AttackCommand = new AttackCommand(attackDamage, attackPoint, enemyLayer, damageableLayer);
+        EventQueue.Instance.QueueCommand(AttackCommand);
     }
 
     private void ONInteract()
@@ -174,27 +152,7 @@ public class PlayerController : MonoBehaviour
         }      
     }
 
-    private void Move()
-    {
-        inputX = Input.GetAxisRaw("Horizontal");
-        inputY = Input.GetAxisRaw("Vertical");
-        
-        var MovementCommand = new MovementCommand(inputX,inputY, rb, maxSpeed, maxAcceleration, transform);
-        EventQueue.Instance.QueueCommand(MovementCommand);
-    }
-
-    /*private void Execute()
-    {
-        var MovementCommand = new MovementCommand(inputX,inputY, rb, maxSpeed, maxAcceleration, transform);
-        ProcessCommand(MovementCommand);
-
-    }
-
-    private void ProcessCommand(ICommand command)
-    {
-        command.Execute();
-    }*/
-     public void Death()
+    public void Death()
     {
         Debug.Log("died");
     }

@@ -44,10 +44,4 @@ public class MovementCommand : ICommand
             transform.rotation = (Quaternion.Euler(0, 180, 0));
         }
     }   
-
-    private void ProcessCommand(ICommand command)
-    {
-        command.Execute();
-    }
-
 }
