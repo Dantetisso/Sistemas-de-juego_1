@@ -4,21 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class MovementCommand : MonoBehaviour, ICommand
+public class MovementCommand : ICommand
 {
-    private float inputX;
-    private float inputY;
-    private Rigidbody2D rb;
-    private float maxSpeed;
-    private float maxAcceleration;
+    private readonly float inputX;
+    private readonly float inputY;
+    private readonly Rigidbody2D rb;
+    private readonly float maxSpeed;
+    private readonly float maxAcceleration;
     private Transform transform;
-
-
-    private void Awake()
-    {
-        rb = gameObject.GetComponent<Rigidbody2D>();
-    }
-
 
     public MovementCommand(float _inputX, float _inputY, Rigidbody2D _rb, float _maxSpeed, float _maxAcceleration, Transform _transform)
     {   
@@ -28,24 +21,10 @@ public class MovementCommand : MonoBehaviour, ICommand
         maxSpeed = _maxSpeed;
         maxAcceleration = _maxAcceleration;
         transform = _transform;
-
     }
-
-    public event EventHandler CanExecuteChanged;
-
-    public bool CanExecute(object parameter)
+   
+    public void Execute()
     {
-        throw new NotImplementedException();
-    }
-
-    public void Execute(object parameter)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Move()
-    {
-        
        float desiredSpeed = inputX * maxSpeed;
 
        float diffSpeed = desiredSpeed - rb.velocity.x;
@@ -64,5 +43,11 @@ public class MovementCommand : MonoBehaviour, ICommand
             rb.AddForce(new Vector2(Xforce, 0f), ForceMode2D.Impulse);
             transform.rotation = (Quaternion.Euler(0, 180, 0));
         }
-    }    
+    }   
+
+    private void ProcessCommand(ICommand command)
+    {
+        command.Execute();
+    }
+
 }

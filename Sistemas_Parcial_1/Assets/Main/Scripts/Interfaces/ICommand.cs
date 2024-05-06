@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IComand 
+public interface ICommand 
 {
-    
+    void Execute();
 }

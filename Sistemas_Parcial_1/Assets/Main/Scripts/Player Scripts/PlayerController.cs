@@ -46,16 +46,9 @@ public class PlayerController : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
-    private void MovePlayer()
-    {
-        var MovementCommand = new MovementCommand(inputX,inputY, rb, maxSpeed, maxAcceleration, transform);
-        MovementCommand.Move();
-    }
-
     void Update()
     {
-        inputX = Input.GetAxisRaw("Horizontal");
-        inputY = Input.GetAxisRaw("Vertical");
+        
 
         animator.SetFloat("Speed", Mathf.Abs(inputX));
 
@@ -139,7 +132,7 @@ public class PlayerController : MonoBehaviour
     //         rb.AddForce(new Vector2(Xforce, 0f), ForceMode2D.Impulse);
     //         transform.rotation = (Quaternion.Euler(0, 180, 0));
     //     }
-        MovePlayer();
+        Move();
     }
 
 
@@ -181,11 +174,30 @@ public class PlayerController : MonoBehaviour
         }      
     }
 
-#endregion   
+    private void Move()
+    {
+        inputX = Input.GetAxisRaw("Horizontal");
+        inputY = Input.GetAxisRaw("Vertical");
+        
+        var MovementCommand = new MovementCommand(inputX,inputY, rb, maxSpeed, maxAcceleration, transform);
+        EventQueue.Instance.QueueCommand(MovementCommand);
+    }
 
-    public void Death()
+    /*private void Execute()
+    {
+        var MovementCommand = new MovementCommand(inputX,inputY, rb, maxSpeed, maxAcceleration, transform);
+        ProcessCommand(MovementCommand);
+
+    }
+
+    private void ProcessCommand(ICommand command)
+    {
+        command.Execute();
+    }*/
+     public void Death()
     {
         Debug.Log("died");
     }
-    
+
+#endregion   
 }
