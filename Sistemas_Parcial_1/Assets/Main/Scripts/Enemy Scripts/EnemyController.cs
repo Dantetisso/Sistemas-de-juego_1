@@ -9,14 +9,17 @@ public class EnemyController : MonoBehaviour, IDamagable
     [SerializeField]private Transform attackPoint;
     private HealthController health;
     private Animator animator;
+    private CapsuleCollider2D coll;
     private int damage;
     public bool IsDead;
+    [SerializeField] private float maxTime;
 
 
     private void Start()
     {
         health = GetComponent<HealthController>();
         animator = GetComponent<Animator>();
+        coll = GetComponent<CapsuleCollider2D>();
 
         health.maxHealth = data.maxHealth;
         health.currentHealth = health.maxHealth;
@@ -26,6 +29,8 @@ public class EnemyController : MonoBehaviour, IDamagable
 
     void Update()
     {
+        if (IsDead){maxTime -= Time.deltaTime;}
+        
         if (health.currentHealth <= 0)
         {
             Death();
@@ -45,9 +50,27 @@ public class EnemyController : MonoBehaviour, IDamagable
     private void Death()
     {    
         IsDead = true;
+        coll.enabled = false;
         animator.SetTrigger("Death");
+        Timer();
        // transform.position = new Vector3(transform.position.x, -1, transform.position.z); // baja la posicion del enemy x culpa de la animacion de muerte
-        Destroy(gameObject);
+        
+        if(maxTime == 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void Timer()
+    {
+        if (maxTime > 0)
+        {
+            maxTime -= Time.deltaTime;
+        }
+        else if (maxTime < 0)
+        {
+            maxTime = 0;
+        }
     }
 
 }
