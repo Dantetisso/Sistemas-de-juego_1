@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class ArrowTrap : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Transform position;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   void OnTriggerEnter2D(Collider2D other)
+   {
+     var info = new ArrowTrapInfo(position.position, 10, 5, 10f);
+     info.Clone();
+   }
 }
