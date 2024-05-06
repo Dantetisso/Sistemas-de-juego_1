@@ -10,11 +10,9 @@ public class EnemyController : MonoBehaviour, IDamagable
     private HealthController health;
     private Animator animator;
     private CapsuleCollider2D coll;
+    [SerializeField] private float maxTime;
     private int damage;
     public bool IsDead;
-    [SerializeField] private float maxTime;
-
-  
 
 
     private void Start()
