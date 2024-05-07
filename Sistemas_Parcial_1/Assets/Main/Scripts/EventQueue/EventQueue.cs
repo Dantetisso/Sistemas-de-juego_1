@@ -9,14 +9,7 @@ public class EventQueue : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     public void QueueCommand(ICommand command)
@@ -39,5 +32,4 @@ public class EventQueue : MonoBehaviour
 
         currentCommands.Clear();
     }
-
 }
