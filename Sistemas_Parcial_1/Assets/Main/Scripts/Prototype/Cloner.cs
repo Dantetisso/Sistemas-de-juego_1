@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Cloner 
+public class Cloner : MonoBehaviour 
 {
     public static ICloneable CloneObject(ICloneable cloneable)
     {
