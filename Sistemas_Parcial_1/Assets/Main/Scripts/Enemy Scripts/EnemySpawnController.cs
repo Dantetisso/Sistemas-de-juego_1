@@ -11,14 +11,22 @@ public class EnemySpawnController : MonoBehaviour
     
     void Update()
     {      
-        spawn();
+        
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            spawn();
+        }
     }
 
     private void spawn()
     {
-        for (int i = index; i < spawnPoints.Length; i++)
+        while (index < spawnPoints.Length)
         {
-            Instantiate(enemy, spawnPoints[i]);
+            index++;
+            Instantiate(enemy, spawnPoints[index]);
         }
     }
 }

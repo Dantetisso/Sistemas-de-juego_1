@@ -49,14 +49,13 @@ public class EnemyController : MonoBehaviour, IDamagable
         RaycastHit2D hitLeft = Physics2D.Raycast(attackPoint.position, Vector2.left, detectionDistance, playerLayer);
         RaycastHit2D hitRight = Physics2D.Raycast(attackPoint.position, Vector2.right, detectionDistance, playerLayer);
 
-        if (hitRight)
+       /* if (hitRight)
         {
-            Debug.Log("derecha");
         } 
         if (hitLeft)
         {
-            Debug.Log("izquierda");
-        }
+        }*/
+        
         Debug.DrawLine(attackPoint.position, Vector3.left * detectionDistance + attackPoint.position, Color.red);
         Debug.DrawLine(attackPoint.position, Vector3.right * detectionDistance + attackPoint.position, Color.blue);
 
