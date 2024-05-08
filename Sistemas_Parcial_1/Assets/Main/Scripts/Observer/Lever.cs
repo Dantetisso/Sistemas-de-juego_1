@@ -20,12 +20,22 @@ public class Lever : MonoBehaviour, IInteractable
             animator.SetTrigger("IsActioned");
             door.transform.Translate(0,2,0);
             IsActivated = true;
+            UnSuscribe();
         }
     }
  
     public void Interact()
     {
         interact();
+        Suscribe();
     }
-   
+      private void Suscribe()
+    {
+        PlayerController.OnInteract += interact;
+    }
+
+    private void UnSuscribe()
+    {
+        PlayerController.OnInteract -= interact;
+    }
 }

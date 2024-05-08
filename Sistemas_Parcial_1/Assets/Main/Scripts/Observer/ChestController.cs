@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class ChestController : MonoBehaviour, IInteractable
 {   
+    [SerializeField] private Animator animator;
+
     private void interact()
     {
-        transform.position = new Vector3(transform.position.x, 1, 0);
-        Debug.Log("cofre abierto");
+        animator.SetBool("IsOpen", true);
         UnSuscribe();  
     }
    
@@ -19,13 +20,11 @@ public class ChestController : MonoBehaviour, IInteractable
 
      private void Suscribe()
     {
-        PlayerController.OnInteract += Interact;
-        Debug.Log("ARRIBAAA");
+        PlayerController.OnInteract += interact;
     }
 
     private void UnSuscribe()
     {
-        PlayerController.OnInteract -= Interact;
-        Debug.Log("<color=black>"+"AAAABAJOO"+"</color>");
+        PlayerController.OnInteract -= interact;
     }
 }
