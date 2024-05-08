@@ -193,8 +193,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 777cce4d0338aa24fbcfd0873c3a3314, type: 2}
   attackPoint: {fileID: 2016769566886013605}
-  IsDead: 0
   maxTime: 5
+  detectionDistance: 2
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  IsDead: 0
 --- !u!114 &5340028594243494999
 MonoBehaviour:
   m_ObjectHideFlags: 0

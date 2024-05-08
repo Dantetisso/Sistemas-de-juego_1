@@ -1518,6 +1518,10 @@ MonoBehaviour:
   data: {fileID: 0}
   attackPoint: {fileID: 0}
   maxTime: 0
+  detectionDistance: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
   IsDead: 0
   maxHealth: 0
 --- !u!4 &2039321303
@@ -1545,6 +1549,10 @@ PrefabInstance:
     - target: {fileID: 95058210091515365, guid: 001ed026c731c394c8dac5a4368c672e, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 95058210091515365, guid: 001ed026c731c394c8dac5a4368c672e, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 589737046001109451, guid: 001ed026c731c394c8dac5a4368c672e, type: 3}
       propertyPath: m_RootOrder
@@ -1589,6 +1597,14 @@ PrefabInstance:
     - target: {fileID: 589737046001109451, guid: 001ed026c731c394c8dac5a4368c672e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3465373305127273559, guid: 001ed026c731c394c8dac5a4368c672e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762966878490994372, guid: 001ed026c731c394c8dac5a4368c672e, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 001ed026c731c394c8dac5a4368c672e, type: 3}
