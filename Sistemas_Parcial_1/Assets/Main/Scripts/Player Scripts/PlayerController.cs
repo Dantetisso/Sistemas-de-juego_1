@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     #region Variables
     private float inputX;
     private float inputY;
+    public static event Action OnInteract;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -147,6 +148,7 @@ public class PlayerController : MonoBehaviour
             if (items.TryGetComponent(out IInteractable interactable))
             {
                 interactable.Interact();
+                OnInteract?.Invoke();
                 Debug.Log("<color=green>" + interactable + "</color>");
             }
         }      
