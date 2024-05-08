@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc35647f46c8f6b47ad9db1551d280d8, type: 3}
-  m_Name: Enemy_1
+  m_Name: Enemy_2
   m_EditorClassIdentifier: 
   <maxHealth>k__BackingField: 10
   <speed>k__BackingField: 5
-  <damage>k__BackingField: 10
-  <distanceDetection>k__BackingField: 1
+  <damage>k__BackingField: 15
+  <distanceDetection>k__BackingField: 3
   <maxDestroyTime>k__BackingField: 3
   <playerMask>k__BackingField:
     serializedVersion: 2

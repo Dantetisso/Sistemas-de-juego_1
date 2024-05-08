@@ -10,9 +10,9 @@ public class EnemyController : MonoBehaviour, IDamagable
     private HealthController health;
     private Animator animator;
     private CapsuleCollider2D coll;
-    [SerializeField] private float maxTime;
-    [SerializeField] private float detectionDistance;
-    [SerializeField] private LayerMask playerLayer;
+    private float destroyTime;
+    private float detectionDistance;
+    private LayerMask playerLayer;
     private int damage;
     public bool IsDead;
 
@@ -26,6 +26,9 @@ public class EnemyController : MonoBehaviour, IDamagable
         health.maxHealth = data.maxHealth;
         health.currentHealth = health.maxHealth;
         damage = data.damage;
+        playerLayer = data.playerMask;
+        detectionDistance = data.distanceDetection;
+        destroyTime = data.maxDestroyTime;
     }
 
 
@@ -33,7 +36,7 @@ public class EnemyController : MonoBehaviour, IDamagable
     {
         if (IsDead)
         {
-            maxTime -= Time.deltaTime;
+            destroyTime -= Time.deltaTime;
         }
         
         if (health.currentHealth <= 0)
@@ -77,7 +80,7 @@ public class EnemyController : MonoBehaviour, IDamagable
         Timer();
         transform.position = new Vector3(transform.position.x, -1, transform.position.z); // baja la posicion del enemy x culpa de la animacion de muerte
         
-        if (maxTime == 0)
+        if (destroyTime == 0)
         {
             Destroy(gameObject);
         }
@@ -85,13 +88,13 @@ public class EnemyController : MonoBehaviour, IDamagable
 
     private void Timer()
     {
-        if (maxTime > 0)
+        if (destroyTime > 0)
         {
-            maxTime -= Time.deltaTime;
+            destroyTime -= Time.deltaTime;
         }
-        else if (maxTime < 0)
+        else if (destroyTime < 0)
         {
-            maxTime = 0;
+            destroyTime = 0;
         }
     }
 
