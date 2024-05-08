@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8239433585518069637}
   - component: {fileID: 8072557882343431029}
   - component: {fileID: 6580359868212394306}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -166,7 +166,6 @@ MonoBehaviour:
   maxSpeed: 4
   maxAcceleration: 0.3
   jumpSpeed: 8
-  extraJumps: 1
   feet: {fileID: 6022474141834038056}
   groundLayer:
     serializedVersion: 2
@@ -205,7 +204,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1171299843939877841}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +235,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6022474141834038056}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Feet
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
