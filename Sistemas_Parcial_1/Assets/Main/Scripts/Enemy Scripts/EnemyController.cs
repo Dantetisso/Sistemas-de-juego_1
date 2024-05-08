@@ -80,7 +80,7 @@ public class EnemyController : MonoBehaviour, IDamagable
         Timer();
         transform.position = new Vector3(transform.position.x, -1, transform.position.z); // baja la posicion del enemy x culpa de la animacion de muerte
         
-        if (destroyTime == 0)
+        if (destroyTime <= 0)
         {
             Destroy(gameObject);
         }
