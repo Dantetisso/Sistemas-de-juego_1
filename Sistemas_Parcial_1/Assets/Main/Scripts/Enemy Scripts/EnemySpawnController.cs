@@ -8,17 +8,17 @@ public class EnemySpawnController : MonoBehaviour
     [SerializeField] private EnemyController enemy;
     private int index;
    
-    void Start()
-    {
-        
-    }
     
     void Update()
     {      
+        spawn();
+    }
+
+    private void spawn()
+    {
         for (int i = index; i < spawnPoints.Length; i++)
         {
-            index++;
-            Instantiate(enemy, spawnPoints[index]);
+            Instantiate(enemy, spawnPoints[i]);
         }
     }
 }

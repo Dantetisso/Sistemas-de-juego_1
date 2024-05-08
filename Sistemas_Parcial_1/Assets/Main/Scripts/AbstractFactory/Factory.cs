@@ -2,7 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Factory : MonoBehaviour, IFactory
+public class Factory : AbstractFactory
 {
-    public abstract IFactory createItem();
+    public override IFactory createItem()
+    {
+        var newTrap = new Trap();
+        return newTrap;
+    }
 }

@@ -21,7 +21,7 @@ public class AttackCommand : ICommand
     {
         Collider2D[] hit = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(1f, 1f), 0f, damageableLayer);
         
-        foreach (Collider2D objects in hit) // recorre array de collideres dentro de la mascara damageable y busca si tienen la interfaz damageable para hacerles daño
+        foreach (Collider2D objects in hit) 
         {
             if (objects.TryGetComponent(out IDamagable damageable))
             {

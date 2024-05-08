@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
 
     private void ONInteract()
     {
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(attackPoint.position,new Vector2(1f, 1f), 0f, interactableLayer); // lo mismo que con el metodo attack pero esta vez para interactuar
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(attackPoint.position,new Vector2(1f, 1f), 0f, interactableLayer); 
 
         foreach (Collider2D items in colliders)
         {
